@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <style>
 body {
   font-family: 'Questrial', sans-serif;
@@ -44,7 +46,7 @@ h2 {
            <div class="container">
               <div class="row">
                 <div class="col-sm"-4>
-                    <h2>My Location </h2>
+                    <h2>My Location</h2>
                     <div>Day of the week, Day Month Year</div>
                     <br>
                     Sunrise: xyhxy
@@ -91,6 +93,7 @@ h2 {
   </div>
 </div> 
 <br>
+
          <div class="card-group">
             <div class="card">
                 <span class="border border-warning"></span>
@@ -142,8 +145,25 @@ h2 {
                         </div>
                       </div>
          </div>
-
-
 </div>
+
+<script>
+
+  navigator.geolocation.getCurrentPosition(function(position) {
+    let apiKey = "0d863e0f3f7819cc1dc71c86924341c5";
+    let apiUrl = "https://api.openweathermap.org/data/2.5";
+    let apiPath = `weather?lat=${position.coords.latitude}&lon=${
+      position.coords.longitude
+    }&appid=${apiKey}&units=metric`;
+    let h2 = document.querySelector("h2");
+    axios.get(`${apiUrl}/${apiPath}`).then(function(response) {
+    console.log(response.data.name);
+      h2.innerHTML = `${response.data.name}`;
+  });
+});
+    
+
+
+</script>
     </body>
 </html>
