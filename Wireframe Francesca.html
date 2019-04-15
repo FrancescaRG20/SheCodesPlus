@@ -42,35 +42,32 @@ h2 {
                <input type="text" placeholder="Search location">
               </div>
           </div>
-         
            <div class="container">
               <div class="row">
                 <div class="col-sm"-4>
                     <h2>My Location</h2>
-                    <h3>Day of the week, Day Month Year</h3>
-                    <br>
-                    Sunrise: xyhxy
-                    <br>
-                    Sunset: xyhxy
+                    <span class="currentDate">Day of the week, Day Month Year</span>
+                    <div class="sunriseHour">Sunrise: xyhxy</div>
+                    <div class="sunsetHour">Sunset: xyhxy</div>
                 </div>
               </div>
              <br>
               <div class="row">
                   <div class="col-sm-3">
-                      <span class="getTemperature" Current Temperature></span>
+                      <span class="getTemperature">Current Temperature</span>
                   </div>
              <div class="col-sm-3">
                    <i class="fas fa-cloud-sun"></i>
                    <span><em> Cloudy</em></span>
              </div>
              <div class="col-sm-3">
-                <p>Current Hour
+                <p><span class="currentHour">Current Hour</span>
                 <br>
                 Precipitation: %
                 <br>
-                Humidity: %
+                <span class="currentHumidity">Humidity: %</span>
                 <br>
-                Wind: xy km/h
+                <span class="currentWindSpeed">Wind: xy km/h</span>
                 </p>
              </div> 
             </div> 
@@ -147,7 +144,6 @@ h2 {
 </div>
 
 <script>
-
   navigator.geolocation.getCurrentPosition(function(position) {
     let apiKey = "0d863e0f3f7819cc1dc71c86924341c5";
     let apiUrl = "https://api.openweathermap.org/data/2.5";
@@ -156,11 +152,18 @@ h2 {
     
     let h2 = document.querySelector("h2");
     let getTemperature = document.querySelector(".getTemperature");
+    let sunriseHour = document.querySelector(".sunriseHour");
+    let sunsetHour = document.querySelector(".sunsetHour");
+    let currentHumidity = document.querySelector(".currentHumidity");
+    let currentWindSpeed = document.querySelector(".currentWindSpeed");
     axios.get(`${apiUrl}/${apiPath}`).then(function(response) {
-      h2.innerHTML = `${response.data.name}`;
+      console.log(response.data);
+      h2.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
       getTemperature.innerHTML = `${Math.round(response.data.main.temp)}º`;
-     
-
+      sunriseHour.innerHTML = `Sunrise: ${(response.data.sys.sunrise)}`;
+      sunsetHour.innerHTML = `Sunset: ${(response.data.sys.sunset)}`;
+      currentHumidity.innerHTML = `Humidity: ${(response.data.main.humidity)}%`;
+      currentWindSpeed.innerHTML = `Wind: ${(response.data.wind.speed)} km/h`;
   });
 });
 
@@ -191,8 +194,10 @@ function formatDate(date) {
   ];
   let day = weekDays[date.getDay()];
   let month = monthNames[date.getMonth()];
-  let h3 = document.querySelector("h3");
-  h3.innerHTML = `${day}, ${month} ${date.getDate()}, ${date.getFullYear()}`;
+  let currentDate = document.querySelector(".currentDate");
+  let currentHour = document.querySelector(".currentHour");
+  currentDate.innerHTML = `${day}, ${month} ${date.getDate()}, ${date.getFullYear()}`;
+  currentHour.innerHTML = `${date.getHours()}h${date.getMinutes()}`;
 }
 formatDate(date);  
 </script>
