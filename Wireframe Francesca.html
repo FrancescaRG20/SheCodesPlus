@@ -47,7 +47,7 @@ h2 {
               <div class="row">
                 <div class="col-sm"-4>
                     <h2>My Location</h2>
-                    <div>Day of the week, Day Month Year</div>
+                    <h3>Day of the week, Day Month Year</h3>
                     <br>
                     Sunrise: xyhxy
                     <br>
@@ -57,7 +57,7 @@ h2 {
              <br>
               <div class="row">
                   <div class="col-sm-3">
-                      Current Temperature
+                      <span class="getTemperature" Current Temperature></span>
                   </div>
              <div class="col-sm-3">
                    <i class="fas fa-cloud-sun"></i>
@@ -93,7 +93,6 @@ h2 {
   </div>
 </div> 
 <br>
-
          <div class="card-group">
             <div class="card">
                 <span class="border border-warning"></span>
@@ -153,17 +152,49 @@ h2 {
     let apiKey = "0d863e0f3f7819cc1dc71c86924341c5";
     let apiUrl = "https://api.openweathermap.org/data/2.5";
     let apiPath = `weather?lat=${position.coords.latitude}&lon=${
-      position.coords.longitude
-    }&appid=${apiKey}&units=metric`;
+      position.coords.longitude}&appid=${apiKey}&units=metric`;
+    
     let h2 = document.querySelector("h2");
+    let getTemperature = document.querySelector(".getTemperature");
     axios.get(`${apiUrl}/${apiPath}`).then(function(response) {
-    console.log(response.data.name);
       h2.innerHTML = `${response.data.name}`;
+      getTemperature.innerHTML = `${Math.round(response.data.main.temp)}º`;
+     
+
   });
 });
-    
 
-
+let date = new Date();
+function formatDate(date) {
+  let weekDays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednsday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  let monthNames = [
+    "January",
+    "February",
+    "Marc",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+  let day = weekDays[date.getDay()];
+  let month = monthNames[date.getMonth()];
+  let h3 = document.querySelector("h3");
+  h3.innerHTML = `${day}, ${month} ${date.getDate()}, ${date.getFullYear()}`;
+}
+formatDate(date);  
 </script>
     </body>
 </html>
