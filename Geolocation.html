@@ -1,0 +1,49 @@
+
+<html>
+  <head>
+    <title>She Codes Plus</title>
+    <meta charset="UTF-8" />
+    <link href="src/styles.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+
+  <body>
+    <img src="images/logo.png" alt="She Codes Plus Logo" class="logo" />
+    <h1>JavaScript Geolocation API</h1>
+
+    <h3>JS Challenge 1</h3>
+    <p>Log your current latitude and longitude using the Geolocation API</p>
+
+    <h3>JS Challenge 2</h3>
+    <p>Log the current temperature where you are.</p>
+
+    <h3>JS Challenge 3</h3>
+    <p>
+      WHen clicking the current location button, replace the h1 of this page by
+      the current temperature
+    </p>
+    <button>Current Location</button>
+
+    <script src="src/index.js"></script>
+    <script>
+    function buttonClick(event) {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    let apiKey = "0d863e0f3f7819cc1dc71c86924341c5";
+    let apiUrl = "https://api.openweathermap.org/data/2.5";
+    let apiPath = `weather?lat=${position.coords.latitude}&lon=${
+      position.coords.longitude
+    }&appid=${apiKey}&units=metric`;
+    let h1 = document.querySelector("h1");
+
+    axios.get(`${apiUrl}/${apiPath}`).then(function(response) {
+      h1.innerHTML = `The weather in ${response.data.name} is ${Math.round(
+        response.data.main.temp
+      )} degrees`;
+    });
+  });
+}
+let button = document.querySelector("button");
+button.addEventListener("click", buttonClick);
+</script>
+  </body>
+</html>
