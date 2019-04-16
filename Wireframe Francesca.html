@@ -40,6 +40,7 @@ h2 {
               <br>
               <br>
                <input type="text" placeholder="Search location">
+               <input type="submit" value="Q">
               </div>
           </div>
            <div class="container">
@@ -194,10 +195,14 @@ function formatDate(date) {
   ];
   let day = weekDays[date.getDay()];
   let month = monthNames[date.getMonth()];
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
   let currentDate = document.querySelector(".currentDate");
   let currentHour = document.querySelector(".currentHour");
   currentDate.innerHTML = `${day}, ${month} ${date.getDate()}, ${date.getFullYear()}`;
-  currentHour.innerHTML = `${date.getHours()}h${date.getMinutes()}`;
+  currentHour.innerHTML = `${date.getHours()}h${minutes}`;
 }
 formatDate(date);  
 </script>
