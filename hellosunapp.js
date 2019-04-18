@@ -48,8 +48,8 @@ function formatDate(date) {
 
 function refreshWeather(response) {
   event.preventDefault();
-  let apiPath = `${apiRoot}/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(`${apiUrl}/${apiPath}`).then(function(response) {
+  let apiPath = `/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(`${apiRoot}/${apiPath}`).then(function(response) {
     h2.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
     getTemperature.innerHTML = `${Math.round(response.data.main.temp)}º`;
     sunriseHour.innerHTML = `Sunrise: ${response.data.sys.sunrise}`;
