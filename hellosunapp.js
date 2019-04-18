@@ -46,9 +46,9 @@ function formatDate(date) {
   currentHour.innerHTML = `${date.getHours()}h${minutes}`;
 }
 
-function refreshWeather(data) {
+function refreshWeather(response) {
   event.preventDefault();
-  let apiPath = `${apiRoot}/weather?q&appid&${apiKey}&units=metric`;
+  let apiPath = `${apiRoot}/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(`${apiUrl}/${apiPath}`).then(function(response) {
     h2.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
     getTemperature.innerHTML = `${Math.round(response.data.main.temp)}º`;
@@ -59,18 +59,21 @@ function refreshWeather(data) {
   });
 }
 
-function handleSearch(event) {
+function search(event) {
   event.preventDefault();
   let inputValue = document.querySelector("#input-value");
-  let apiPath = `${apiRoot}/weather?q=${inputValue}&appid&${apiKey}&units=metric`;
-
-  axios.get(`${apiRoot}/${apiPath}`).then(refreshWeather());
+  let apiPath = `/weather?q=${inputValue}&appid=${apiKey}&units=metric`;
+  axios.get(`${apiRoot}/${apiPath}`).then(refreshWeather);
+  h2.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
 }
-let input = document.querySelector("#location");
-input.addEventListener("submit", handleSearch);
+let input = document.querySelector("form");
+input.addEventListener("submit", search);
 
 navigator.geolocation.getCurrentPosition(function(position) {
-  let apiPath = `weather?lat=${position.coords.latitude}&lon=${
+  let apiPath = `/weather?lat=${position.coords.latitude}&lon=${
     position.coords.longitude
   }&appid=${apiKey}&units=metric`;
 });
+
+refreshWeather();
+formateDate();
