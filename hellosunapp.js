@@ -74,6 +74,3 @@ navigator.geolocation.getCurrentPosition(function(position) {
     position.coords.longitude
   }&appid=${apiKey}&units=metric`;
 });
-
-refreshWeather();
-formateDate();
