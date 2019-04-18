@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<title> HelloSun</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" href="style.css" />
+<script src="hellosunapp.js"></script>
+
+
+</head>
+    <body>
+     <div class="container">
+       <div class="weather">
+        <div class="col-sm-12">
+            <h1>HelloSun</h1>
+            <img src="SunnyIcon.jpeg" width="60" height="50" alt="SunnyIcon" class="logo">
+            <div>
+              <br>
+              <br>
+              <form id="location">
+               <input type="text" placeholder="Search location" id="input-value">
+               <input type="submit" value="Search">
+              </form>
+              </div>
+          </div>
+           <div class="container">
+              <div class="row">
+                <div class="col-sm"-12>
+                    <h2>My Location</h2>
+                    <span class="currentDate">Day of the week, Day Month Year</span>
+                    <div class="sunriseHour">Sunrise: xyhxy</div>
+                    <div class="sunsetHour">Sunset: xyhxy</div>
+                </div>
+              </div>
+             <br>
+              <div class="row">
+                  <div class="col-sm-4">
+                      <span class="getTemperature">Current Temperature</span>
+                  </div>
+             <div class="col-sm-4">
+                   <i class="fas fa-cloud-sun"></i>
+                   <span><em> Cloudy</em></span>
+             </div>
+             <div class="col-sm-4">
+                <p><span class="currentHour">Current Hour</span>
+                <br>
+                Precipitation: %
+                <br>
+                <span class="currentHumidity">Humidity: %</span>
+                <br>
+                <span class="currentWindSpeed">Wind: xy km/h</span>
+                </p>
+             </div> 
+            </div> 
+            <br>
+             <div class="row">
+                <div class="col-sm"-4>
+                  Graph 
+              </div>
+            </div>
+         <br>
+         <div class="row">
+           <div class="card-group">
+            <div class="col-sm"-6>
+         <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary btn-sm">Temperature</button>
+            <button type="button" class="btn btn-secondary btn-sm">Precipitation</button>
+            <button type="button" class="btn btn-secondary btn-sm">Wind</button>
+         </div>
+            </div>
+          </div>
+         </div> 
+         <br>
+         <div class="card-group">
+            <div class="card">
+                <span class="border border-warning"></span>
+              <div class="card-body">
+                <h5 class="card-title">Tue</h5>
+                <i class="fas fa-cloud-sun"></i>
+                <p class="card-text">Max T Min T</p>
+              </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Wed</h5>
+                  <i class="fas fa-cloud-sun"></i>
+                  <p class="card-text">Max T Min T</p>
+                </div>
+              </div>
+              <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Thur</h5>
+                    <i class="fas fa-cloud-sun"></i>
+                    <p class="card-text">Max T Min T</p>
+                  </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Fri</h5>
+                      <i class="fas fa-cloud-sun"></i>
+                      <p class="card-text">Max T Min T</p>
+                    </div>
+                  </div>
+                  <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Sat</h5>
+                        <i class="fas fa-cloud-sun"></i>
+                        <p class="card-text">Max T Min T</p>
+                      </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">Sun</h5>
+                          <i class="fas fa-cloud-sun"></i>
+                          <p class="card-text">Max T Min T</p>
+                        </div>
+                      </div>
+         </div>
+        </div>
+</div>
+    </body>
+</html>
