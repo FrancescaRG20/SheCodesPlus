@@ -1,35 +1,30 @@
-
 body {
-  font-family: 'Questrial', sans-serif;
+  font-family: "Questrial", sans-serif;
   font-size: 14px;
 }
 h1 {
   position: absolute;
   top: 25px;
   font-size: 22px;
-
 }
 h2 {
   font-size: 22px;
 }
 .weather {
-    border: 2px solid #dadce1;
+  border: 2px solid #dadce1;
   border-radius: 20px;
   margin: 20px auto;
   padding: 20px;
   max-width: 500px;
 }
 .logo {
-    position: relative;
-    top: 10px;
-    left: 90px;
+  position: relative;
+  top: 10px;
+  left: 90px;
 }
 .card-title {
-    font-size: 14px;
+  font-size: 14px;
 }
 .card-text {
-    font-size: 10px;
+  font-size: 10px;
 }
-
-
-
