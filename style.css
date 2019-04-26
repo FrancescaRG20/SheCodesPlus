@@ -28,3 +28,6 @@ h2 {
 .card-text {
   font-size: 10px;
 }
+.weatherDescription {
+  text-transform: capitalize;
+}

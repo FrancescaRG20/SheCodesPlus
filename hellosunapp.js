@@ -5,10 +5,9 @@ let sunsetHour = document.querySelector(".sunsetHour");
 let currentHumidity = document.querySelector(".currentHumidity");
 let currentWindSpeed = document.querySelector(".currentWindSpeed");
 let description = document.querySelector(".weatherDescription");
-console.log(description);
 let currentDate = document.querySelector(".currentDate");
 let currentHour = document.querySelector(".currentHour");
-let date = new Date();
+
 let input = document.querySelector("#location");
 
 let apiKey = "0d863e0f3f7819cc1dc71c86924341c5";
@@ -40,14 +39,23 @@ function formatDate(date) {
   ];
   let day = weekDays[date.getDay()];
   let month = monthNames[date.getMonth()];
+  let numberDay = date.getDate();
+  let year = date.getFullYear();
+
+  return `${day}, ${month} ${numberDay} ${year}`;
+}
+
+function formateHour(date) {
+  let hours = date.getHours();
   let minutes = date.getMinutes();
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-  return `${day}, ${month} ${date.getDate()}, ${date.getFullYear()}`;
+  return `${hours}h${minutes}`;
 }
 
 function refreshWeather(response) {
+  console.log(response.data.dt);
   place.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
   getTemperature.innerHTML = `${Math.round(response.data.main.temp)}º`;
   sunriseHour.innerHTML = `Sunrise: ${response.data.sys.sunrise}`;
@@ -55,10 +63,10 @@ function refreshWeather(response) {
   currentHumidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
   currentWindSpeed.innerHTML = `Wind: ${response.data.wind.speed} km/H`;
   description.innerHTML = `${response.data.weather[0].description}`;
-  currentDate.innerHTML = `${day}, ${month} ${date.getDate()}, ${date.getFullYear()}`;
-  currentHour.innerHTML = `${date.getHours()}h${minutes}`;
+  currentDate.innerHTML = formatDate(new Date(response.data.dt * 1000));
+  currentHour.innerHTML = formateHour(new Date(response.data.dt * 1000));
 }
-let city = "London";
+let city = "Rome";
 let apiUrl = `${apiRoot}/weather?q=${city}&appid=${apiKey}&units=metric`;
 axios.get(apiUrl).then(refreshWeather);
 
