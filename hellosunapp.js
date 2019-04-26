@@ -7,6 +7,7 @@ let currentWindSpeed = document.querySelector(".currentWindSpeed");
 let description = document.querySelector(".weatherDescription");
 let currentDate = document.querySelector(".currentDate");
 let currentHour = document.querySelector(".currentHour");
+let input = document.querySelector("#location");
 
 let apiKey = "0d863e0f3f7819cc1dc71c86924341c5";
 let apiRoot = "https://api.openweathermap.org/data/2.5";
@@ -16,7 +17,7 @@ function formatDate(date) {
     "Sunday",
     "Monday",
     "Tuesday",
-    "Wednsday",
+    "Wednesday",
     "Thursday",
     "Friday",
     "Saturday"
@@ -53,8 +54,6 @@ function formatHour(date) {
 }
 
 function refreshWeather(response) {
-  console.log(new Date(response.data.sys.sunset * 1000));
-  console.log(new Date(response.data.sys.sunrise * 1000));
   place.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
   getTemperature.innerHTML = `${Math.round(response.data.main.temp)}º`;
   sunriseHour.innerHTML =
@@ -76,9 +75,7 @@ axios.get(apiUrl).then(refreshWeather);
 function search(event) {
   event.preventDefault();
   let inputValue = document.querySelector("#input-value");
-  let apiPath = `weather?q=${inputValue}&appid=${apiKey}&units=metric`;
+  let apiPath = `weather?q=${inputValue.value}&appid=${apiKey}&units=metric`;
   axios.get(`${apiRoot}/${apiPath}`).then(refreshWeather);
-  place.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
 }
-let input = document.querySelector("#location");
 input.addEventListener("submit", search);
