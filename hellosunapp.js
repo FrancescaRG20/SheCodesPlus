@@ -8,8 +8,6 @@ let description = document.querySelector(".weatherDescription");
 let currentDate = document.querySelector(".currentDate");
 let currentHour = document.querySelector(".currentHour");
 
-let input = document.querySelector("#location");
-
 let apiKey = "0d863e0f3f7819cc1dc71c86924341c5";
 let apiRoot = "https://api.openweathermap.org/data/2.5";
 
@@ -45,7 +43,7 @@ function formatDate(date) {
   return `${day}, ${month} ${numberDay} ${year}`;
 }
 
-function formateHour(date) {
+function formatHour(date) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
   if (minutes < 10) {
@@ -55,17 +53,22 @@ function formateHour(date) {
 }
 
 function refreshWeather(response) {
-  console.log(response.data.dt);
+  console.log(new Date(response.data.sys.sunset * 1000));
+  console.log(new Date(response.data.sys.sunrise * 1000));
   place.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
   getTemperature.innerHTML = `${Math.round(response.data.main.temp)}º`;
-  sunriseHour.innerHTML = `Sunrise: ${response.data.sys.sunrise}`;
-  sunsetHour.innerHTML = `Sunset: ${response.data.sys.sunset}`;
+  sunriseHour.innerHTML =
+    "Sunrise:" + " " + formatHour(new Date(response.data.sys.sunrise * 1000));
+  sunsetHour.innerHTML =
+    "Sunset:" + " " + formatHour(new Date(response.data.sys.sunset * 1000));
   currentHumidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
   currentWindSpeed.innerHTML = `Wind: ${response.data.wind.speed} km/H`;
   description.innerHTML = `${response.data.weather[0].description}`;
   currentDate.innerHTML = formatDate(new Date(response.data.dt * 1000));
-  currentHour.innerHTML = formateHour(new Date(response.data.dt * 1000));
+  currentHour.innerHTML = formatHour(new Date(response.data.dt * 1000));
+  console.log(currentHour.innerHTML);
 }
+
 let city = "Rome";
 let apiUrl = `${apiRoot}/weather?q=${city}&appid=${apiKey}&units=metric`;
 axios.get(apiUrl).then(refreshWeather);
@@ -75,6 +78,7 @@ function search(event) {
   let inputValue = document.querySelector("#input-value");
   let apiPath = `weather?q=${inputValue}&appid=${apiKey}&units=metric`;
   axios.get(`${apiRoot}/${apiPath}`).then(refreshWeather);
-  h2.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
+  place.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
 }
+let input = document.querySelector("#location");
 input.addEventListener("submit", search);

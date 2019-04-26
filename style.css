@@ -22,6 +22,9 @@ h2 {
   top: 10px;
   left: 90px;
 }
+.getTemperature {
+  font-size: 36px;
+}
 .card-title {
   font-size: 14px;
 }
@@ -30,4 +33,10 @@ h2 {
 }
 .weatherDescription {
   text-transform: capitalize;
+}
+.sunriseHour,
+.sunsetHour,
+.currentHumidity,
+.currentWindSpeed {
+  font-size: 10px;
 }
