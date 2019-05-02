@@ -56,3 +56,8 @@ h2 {
 .img {
   display: block;
 }
+.signature {
+  margin: 5px auto;
+  padding: 10px 0px;
+  max-width: 500px;
+}
