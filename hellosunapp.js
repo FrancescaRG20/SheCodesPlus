@@ -8,6 +8,7 @@ let description = document.querySelector(".weatherDescription");
 let currentDate = document.querySelector(".currentDate");
 let currentHour = document.querySelector(".currentHour");
 let input = document.querySelector("#location");
+let currentLocationButton = document.querySelector("#current-location");
 
 let apiKey = "0d863e0f3f7819cc1dc71c86924341c5";
 let apiRoot = "https://api.openweathermap.org/data/2.5";
@@ -65,7 +66,6 @@ function refreshWeather(response) {
   description.innerHTML = `${response.data.weather[0].description}`;
   currentDate.innerHTML = formatDate(new Date(response.data.dt * 1000));
   currentHour.innerHTML = formatHour(new Date(response.data.dt * 1000));
-  console.log(currentHour.innerHTML);
 }
 
 function search(city) {
@@ -82,6 +82,21 @@ function handleSearch(event) {
     alert("Please enter a city");
   }
 }
+
+function searchPosition(position) {
+  let apiUrl = `${apiRoot}/weather?lat=${position.coords.latitude}&lon=${
+    position.coords.longitude
+  }&appid=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(refreshWeather);
+}
+
+function buttonClick(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(searchPosition);
+}
+
 input.addEventListener("submit", handleSearch);
+currentLocationButton.addEventListener("click", buttonClick);
 
 search("Basel");
