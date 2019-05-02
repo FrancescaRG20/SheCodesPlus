@@ -51,3 +51,7 @@ h2 {
   position: relative;
   top: 8px;
 }
+
+.img {
+  display: block;
+}

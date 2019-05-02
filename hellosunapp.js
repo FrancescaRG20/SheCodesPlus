@@ -9,6 +9,7 @@ let currentDate = document.querySelector(".currentDate");
 let currentHour = document.querySelector(".currentHour");
 let input = document.querySelector("#location");
 let currentLocationButton = document.querySelector("#current-location");
+let icon = document.querySelector("#weather-icon");
 
 let apiKey = "0d863e0f3f7819cc1dc71c86924341c5";
 let apiRoot = "https://api.openweathermap.org/data/2.5";
@@ -55,6 +56,9 @@ function formatHour(date) {
 }
 
 function refreshWeather(response) {
+  let iconUrl = `http://openweathermap.org/img/w/${
+    response.data.weather[0].icon
+  }.png`;
   place.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
   getTemperature.innerHTML = `${Math.round(response.data.main.temp)}º`;
   sunriseHour.innerHTML =
@@ -66,6 +70,8 @@ function refreshWeather(response) {
   description.innerHTML = `${response.data.weather[0].description}`;
   currentDate.innerHTML = formatDate(new Date(response.data.dt * 1000));
   currentHour.innerHTML = formatHour(new Date(response.data.dt * 1000));
+  icon.setAttribute("src", iconUrl);
+  icon.setAttribute("alt", response.data.weather[0].description);
 }
 
 function search(city) {
@@ -99,4 +105,4 @@ function buttonClick(event) {
 input.addEventListener("submit", handleSearch);
 currentLocationButton.addEventListener("click", buttonClick);
 
-search("Basel");
+search("Praia de Mira");
