@@ -43,7 +43,8 @@ h2 {
 .sunriseHour,
 .sunsetHour,
 .currentHumidity,
-.currentWindSpeed {
+.currentWindSpeed,
+.weatherDescription {
   font-size: 10px;
 }
 
