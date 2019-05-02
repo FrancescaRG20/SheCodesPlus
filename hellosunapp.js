@@ -68,7 +68,12 @@ function refreshWeather(response) {
   console.log(currentHour.innerHTML);
 }
 
-function search(event) {
+function search(city) {
+  let apiUrl = `${apiRoot}/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(refreshWeather);
+}
+
+function handleSearch(event) {
   event.preventDefault();
   let inputValue = document.querySelector("#input-value");
   let apiPath = `weather?q=${inputValue.value}&appid=${apiKey}&units=metric`;
@@ -77,8 +82,6 @@ function search(event) {
   }
   axios.get(`${apiRoot}/${apiPath}`).then(refreshWeather);
 }
-input.addEventListener("submit", search);
+input.addEventListener("submit", handleSearch);
 
-let city = "Rome";
-let apiUrl = `${apiRoot}/weather?q=${city}&appid=${apiKey}&units=metric`;
-axios.get(apiUrl).then(refreshWeather);
+search("Basel");
