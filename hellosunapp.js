@@ -72,6 +72,29 @@ function refreshWeather(response) {
   currentHour.innerHTML = formatHour(new Date(response.data.dt * 1000));
   icon.setAttribute("src", iconUrl);
   icon.setAttribute("alt", response.data.weather[0].description);
+
+  let city = "Basel";
+  let apiUrl = `${apiRoot}/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  console.log(response.data.list);
+
+  axios.get(apiUrl).then(function(response) {
+    document.querySelector(".card-group").forEach(function(element, index) {
+      let day = new Date(response.data.list[index].dt_txt);
+      element.querySelector(".card-title").innerHTML = formatDate(day);
+      element.querySelector(".card-text").innerHTML = Math.round(
+        response.data.list[index].main.temp
+      );
+
+      element
+        .querySelector(".day__block-image")
+        .setAttribute(
+          "src",
+          "http://openweathermap.org/img/w/" +
+            response.data.list[index].weather[0].icon +
+            ".png"
+        );
+    });
+  });
 }
 
 function search(city) {
