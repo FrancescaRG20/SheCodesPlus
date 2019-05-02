@@ -76,12 +76,11 @@ function search(city) {
 function handleSearch(event) {
   event.preventDefault();
   let inputValue = document.querySelector("#input-value");
-  let apiPath = `weather?q=${inputValue.value}&appid=${apiKey}&units=metric`;
-  if (inputValue.value.length <= 0) {
+  if (inputValue.value.length > 0) {
+    search(inputValue.value);
+  } else {
     alert("Please enter a city");
   }
-
-  axios.get(`${apiRoot}/${apiPath}`).then(refreshWeather);
 }
 input.addEventListener("submit", handleSearch);
 
