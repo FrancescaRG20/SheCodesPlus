@@ -46,6 +46,20 @@ function formatDate(date) {
   return `${day}, ${month} ${numberDay} ${year}`;
 }
 
+function formatDateForecasts(date) {
+  let weekDays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  let day = weekDays[date.getDay()];
+  return `${day}`;
+}
+
 function formatHour(date) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
@@ -72,34 +86,32 @@ function refreshWeather(response) {
   currentHour.innerHTML = formatHour(new Date(response.data.dt * 1000));
   icon.setAttribute("src", iconUrl);
   icon.setAttribute("alt", response.data.weather[0].description);
+}
 
-  let city = "Basel";
-  let apiUrl = `${apiRoot}/forecast?q=${city}&appid=${apiKey}&units=metric`;
-  console.log(response.data.list);
-
-  axios.get(apiUrl).then(function(response) {
-    document.querySelector(".card-group").forEach(function(element, index) {
-      let day = new Date(response.data.list[index].dt_txt);
-      element.querySelector(".card-title").innerHTML = formatDate(day);
-      element.querySelector(".card-text").innerHTML = Math.round(
-        response.data.list[index].main.temp
+function refreshForecasts(response) {
+  document.querySelectorAll(".card-body").forEach(function(element, index) {
+    let day = new Date(response.data.list[index].dt_txt);
+    console.log(day);
+    element.querySelector(".card-title").innerHTML = formatDateForecasts(day);
+    element.querySelector(".card-text").innerHTML = `Max ${Math.round(
+      response.data.list[index].main.temp_max
+    )}º`;
+    element
+      .querySelector(".day__block-image")
+      .setAttribute(
+        "src",
+        "http://openweathermap.org/img/w/" +
+          response.data.list[index].weather[0].icon +
+          ".png"
       );
-
-      element
-        .querySelector(".day__block-image")
-        .setAttribute(
-          "src",
-          "http://openweathermap.org/img/w/" +
-            response.data.list[index].weather[0].icon +
-            ".png"
-        );
-    });
   });
 }
 
 function search(city) {
   let apiUrl = `${apiRoot}/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(refreshWeather);
+  let apiUrlForecasts = `${apiRoot}/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrlForecasts).then(refreshForecasts);
 }
 
 function handleSearch(event) {
@@ -116,8 +128,12 @@ function searchPosition(position) {
   let apiUrl = `${apiRoot}/weather?lat=${position.coords.latitude}&lon=${
     position.coords.longitude
   }&appid=${apiKey}&units=metric`;
-
   axios.get(apiUrl).then(refreshWeather);
+
+  let apiUrlForecasts = `${apiRoot}/forecast?lat=${
+    position.coords.latitude
+  }&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrlForecasts).then(refreshForecasts);
 }
 
 function buttonClick(event) {
