@@ -74,7 +74,7 @@ function refreshWeather(response) {
     response.data.weather[0].icon
   }.png`;
   place.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
-  getTemperature.innerHTML = `${Math.round(response.data.main.temp)}º`;
+  getTemperature.innerHTML = `${Math.round(response.data.main.temp)}\xB0`;
   sunriseHour.innerHTML =
     "Sunrise:" + " " + formatHour(new Date(response.data.sys.sunrise * 1000));
   sunsetHour.innerHTML =
@@ -95,7 +95,7 @@ function refreshForecasts(response) {
     element.querySelector(".card-title").innerHTML = formatDateForecasts(day);
     element.querySelector(".card-text").innerHTML = `Max ${Math.round(
       response.data.list[index].main.temp_max
-    )}º`;
+    )}\xB0`;
     element
       .querySelector(".day__block-image")
       .setAttribute(
