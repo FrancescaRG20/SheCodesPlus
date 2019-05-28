@@ -2,6 +2,13 @@ body {
   font-family: "Questrial", sans-serif;
   font-size: 14px;
 }
+
+.weather1 {
+  margin: 6px auto;
+  padding: 10px 0px;
+  max-width: 500px;
+}
+
 h1 {
   position: absolute;
   top: 25px;
@@ -10,16 +17,24 @@ h1 {
 h2 {
   font-size: 22px;
 }
+#location,
+.btn btn-secondary btn-sm {
+  margin: -15px auto;
+}
+button {
+  margin: 15px auto;
+}
 .weather {
-  border: 2px solid #dadce1;
+  border: 1px solid #dadce1;
   border-radius: 20px;
-  margin: 10px auto;
+  margin: 6px auto;
   padding: 10px 0px;
-  max-width: 500px;
+  max-width: 450px;
+  background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
 }
 .logo {
   position: relative;
-  top: 10px;
+  top: 5px;
   left: 90px;
 }
 #current-location {
@@ -28,7 +43,7 @@ h2 {
   left: 220px;
 }
 .getTemperature {
-  font-size: 36px;
+  font-size: 70px;
 }
 
 .card-title {
@@ -40,6 +55,7 @@ h2 {
 .weatherDescription {
   text-transform: capitalize;
 }
+
 .sunriseHour,
 .sunsetHour,
 .currentHumidity,
@@ -56,6 +72,9 @@ h2 {
 .img {
   display: block;
 }
+#weather-icon {
+}
+
 .signature {
   margin: 5px auto;
   padding: 10px 0px;
