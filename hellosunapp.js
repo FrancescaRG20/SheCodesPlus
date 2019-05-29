@@ -43,30 +43,25 @@ function formatDate(date) {
   let numberDay = date.getDate();
   let year = date.getFullYear();
 
-  return `${day} ${month} ${numberDay} ${year}`;
-}
-
-function formatDateForecasts(date) {
-  let weekDays = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-  ];
-  let day = weekDays[date.getDay()];
-  return `${day}`;
+  return `${day}, ${month} ${numberDay} ${year}`;
 }
 
 function formatHour(date) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
+  if (hours < 1) {
+    hours = `0${hours}`;
+  }
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
   return `${hours}h${minutes}`;
+}
+
+function formatDateForecasts(date) {
+  let weekDays = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"];
+  let day = weekDays[date.getDay()];
+  return `${day} ${formatHour(date)}`;
 }
 
 function refreshWeather(response) {
@@ -80,7 +75,7 @@ function refreshWeather(response) {
   sunsetHour.innerHTML =
     "Sunset:" + " " + formatHour(new Date(response.data.sys.sunset * 1000));
   currentHumidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
-  currentWindSpeed.innerHTML = `Wind: ${response.data.wind.speed} km/H`;
+  currentWindSpeed.innerHTML = `Wind: ${response.data.wind.speed} km/h`;
   description.innerHTML = `${response.data.weather[0].description}`;
   currentDate.innerHTML = formatDate(new Date(response.data.dt * 1000));
   currentHour.innerHTML = formatHour(new Date(response.data.dt * 1000));

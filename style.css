@@ -17,14 +17,10 @@ h1 {
 h2 {
   font-size: 22px;
   position: relative;
-  top: -20px;
+  top: -10px;
 }
 
-.currentDate {
-  position: relative;
-  top: -20px;
-}
-
+.currentDate,
 .currentHour {
   position: relative;
   top: -20px;
@@ -42,7 +38,7 @@ button {
   border: 1px solid #dadce1;
   border-radius: 20px;
   margin: 6px auto;
-  padding: 10px 0px;
+  padding: 6px 0px;
   max-width: 450px;
   background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
 }
@@ -56,8 +52,30 @@ button {
   top: -31px;
   left: 220px;
 }
+
 .getTemperature {
   font-size: 60px;
+  font-weight: 10;
+}
+
+#weather-icon {
+  display: block;
+}
+
+.weatherDescription {
+  text-transform: capitalize;
+  position: relative;
+  top: -12px;
+  left: 10px;
+  font-size: 10px;
+}
+
+.currentHumidity,
+.currentWindSpeed {
+  font-size: 10px;
+  position: relative;
+  top: 20px;
+  left: 10px;
 }
 
 .card-title {
@@ -66,24 +84,15 @@ button {
 .card-text {
   font-size: 10px;
 }
-.weatherDescription {
-  text-transform: capitalize;
-  position: relative;
-  top: -12px;
-  left: 10px;
-  font-size: 12px;
-}
 
 .dataBlock {
+  position: relative;
   font-size: 10px;
-}
-
-.img {
-  display: block;
+  top: -20px;
 }
 
 .signature {
-  margin: 5px auto;
-  padding: 10px 0px;
-  max-width: 500px;
+  margin: 2px auto;
+  padding: 2px 0px;
+  max-width: 450px;
 }
