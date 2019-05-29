@@ -88,7 +88,7 @@ function refreshForecasts(response) {
     let day = new Date(response.data.list[index].dt_txt);
     console.log(day);
     element.querySelector(".card-title").innerHTML = formatDateForecasts(day);
-    element.querySelector(".card-text").innerHTML = `Max ${Math.round(
+    element.querySelector(".card-text").innerHTML = `${Math.round(
       response.data.list[index].main.temp_max
     )}\xB0`;
     element
@@ -105,7 +105,7 @@ function refreshForecasts(response) {
 function search(city) {
   let apiUrl = `${apiRoot}/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(refreshWeather);
-  let apiUrlForecasts = `${apiRoot}/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  let apiUrlForecasts = `${apiRoot}/forecast/?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrlForecasts).then(refreshForecasts);
 }
 
