@@ -43,7 +43,7 @@ function formatDate(date) {
   let numberDay = date.getDate();
   let year = date.getFullYear();
 
-  return `${day}, ${month} ${numberDay} ${year}`;
+  return `${day} ${month} ${numberDay} ${year}`;
 }
 
 function formatDateForecasts(date) {

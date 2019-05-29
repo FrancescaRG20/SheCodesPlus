@@ -11,16 +11,30 @@ body {
 
 h1 {
   position: absolute;
-  top: 25px;
+  top: 20px;
   font-size: 22px;
 }
 h2 {
   font-size: 22px;
+  position: relative;
+  top: -20px;
 }
+
+.currentDate {
+  position: relative;
+  top: -20px;
+}
+
+.currentHour {
+  position: relative;
+  top: -20px;
+}
+
 #location,
 .btn btn-secondary btn-sm {
   margin: -15px auto;
 }
+
 button {
   margin: 15px auto;
 }
@@ -43,7 +57,7 @@ button {
   left: 220px;
 }
 .getTemperature {
-  font-size: 70px;
+  font-size: 60px;
 }
 
 .card-title {
@@ -54,25 +68,18 @@ button {
 }
 .weatherDescription {
   text-transform: capitalize;
-}
-
-.sunriseHour,
-.sunsetHour,
-.currentHumidity,
-.currentWindSpeed,
-.weatherDescription {
-  font-size: 10px;
+  position: relative;
+  top: -12px;
+  left: 10px;
+  font-size: 12px;
 }
 
 .dataBlock {
-  position: relative;
-  top: 8px;
+  font-size: 10px;
 }
 
 .img {
   display: block;
-}
-#weather-icon {
 }
 
 .signature {
