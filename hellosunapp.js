@@ -139,4 +139,13 @@ function buttonClick(event) {
 input.addEventListener("submit", handleSearch);
 currentLocationButton.addEventListener("click", buttonClick);
 
+function changeBackgroundColor(color) {
+  description = rsponse.data.weather[0].description;
+  color = "grey";
+  if (description !== "clear sky" || "few clouds") {
+    document.body.style.backgroundColor = color;
+  }
+}
+
+window.addEventListener("load", changeBackgroundColor);
 search("Praia de Mira");

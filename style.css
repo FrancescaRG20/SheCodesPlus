@@ -4,18 +4,40 @@ body {
   color: #16364f;
 }
 
-.weather1 {
+.weather-out {
+  margin: 0px auto;
+  padding: 6px 0px;
+  max-width: 450px;
+}
+
+.weather {
+  border: 1px solid #dadce1;
+  border-radius: 20px;
   margin: 6px auto;
-  padding: 10px 0px;
-  max-width: 500px;
+  padding: 6px 0px;
+  max-width: 450px;
+  background-image: linear-gradient(
+    -225deg,
+    #5d9fff 0%,
+    #b8dcff 48%,
+    #6bbbff 100%
+  );
 }
 
 h1 {
   position: absolute;
   top: 20px;
+  left: -10px;
   font-size: 22px;
   color: #5a6268;
 }
+
+.logo {
+  position: relative;
+  top: 5px;
+  left: 65px;
+}
+
 h2 {
   font-size: 22px;
   position: relative;
@@ -36,23 +58,19 @@ h2 {
 button {
   margin: 15px auto;
 }
-.weather {
-  border: 1px solid #dadce1;
-  border-radius: 20px;
-  margin: 6px auto;
-  padding: 6px 0px;
-  max-width: 450px;
-  background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
-}
-.logo {
-  position: relative;
-  top: 5px;
-  left: 90px;
-}
+
 #current-location {
+  margin: 5px auto;
   position: relative;
-  top: -31px;
+  top: -21px;
   left: 220px;
+}
+
+ul {
+  height: 15px;
+  list-style-type: none;
+  margin: 0px auto;
+  padding: 0px 0px;
 }
 
 .getTemperature {
@@ -98,7 +116,8 @@ button {
   font-size: 10px;
 }
 
-.dataBlock {
+.sunriseHour,
+.sunsetHour {
   position: relative;
   font-size: 10px;
   top: -20px;
