@@ -81,12 +81,22 @@ function refreshWeather(response) {
   currentHour.innerHTML = formatHour(new Date(response.data.dt * 1000));
   icon.setAttribute("src", iconUrl);
   icon.setAttribute("alt", response.data.weather[0].description);
+
+  changeBackgroundColor = function changeBackground(color) {
+    description = `${response.data.weather[0].description}`;
+    color = "grey";
+    if (description !== "clear sky") {
+      document.container.style.backgroundColor = color;
+    }
+
+    window.addEventListener("load", changeBackground);
+  };
 }
 
 function refreshForecasts(response) {
   document.querySelectorAll(".card-body").forEach(function(element, index) {
     let day = new Date(response.data.list[index].dt_txt);
-    console.log(day);
+
     element.querySelector(".card-title").innerHTML = formatDateForecasts(day);
     element.querySelector(".card-text").innerHTML = `${Math.round(
       response.data.list[index].main.temp_max
@@ -140,12 +150,3 @@ input.addEventListener("submit", handleSearch);
 currentLocationButton.addEventListener("click", buttonClick);
 
 search("Praia de Mira");
-
-function changeBackgroundColor(color) {
-  description = `${response.data.weather[0].description}`;
-  color = "grey";
-  if (description !== "clear sky" || "few clouds") {
-    document.body.style.backgroundColor = color;
-  }
-}
-window.addEventListener("load", changeBackgroundColor);

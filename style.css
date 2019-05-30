@@ -111,9 +111,16 @@ ul {
 }
 .card-title {
   font-size: 10px;
+  height: 10px;
 }
 .card-text {
   font-size: 10px;
+}
+
+.day__block-image {
+  display: block;
+  position: relative;
+  right: 10px;
 }
 
 .sunriseHour,
