@@ -1,3 +1,4 @@
+// Definition of variables
 let place = document.querySelector("h2");
 let getTemperature = document.querySelector(".getTemperature");
 let sunriseHour = document.querySelector(".sunriseHour");
@@ -10,10 +11,10 @@ let currentHour = document.querySelector(".currentHour");
 let input = document.querySelector("#location");
 let currentLocationButton = document.querySelector("#current-location");
 let icon = document.querySelector("#weather-icon");
-
 let apiKey = "0d863e0f3f7819cc1dc71c86924341c5";
 let apiRoot = "https://api.openweathermap.org/data/2.5";
 
+// function to format the date
 function formatDate(date) {
   let weekDays = [
     "Sunday",
@@ -42,10 +43,10 @@ function formatDate(date) {
   let month = monthNames[date.getMonth()];
   let numberDay = date.getDate();
   let year = date.getFullYear();
-
   return `${day}, ${month} ${numberDay} ${year}`;
 }
 
+// function to format the hour
 function formatHour(date) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
@@ -58,12 +59,14 @@ function formatHour(date) {
   return `${hours}h${minutes}`;
 }
 
+// function to formate the date of the forecasts
 function formatDateForecasts(date) {
   let weekDays = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"];
   let day = weekDays[date.getDay()];
   return `${day} ${formatHour(date)}`;
 }
 
+// function to display the weather data for current day
 function refreshWeather(response) {
   let iconUrl = `http://openweathermap.org/img/w/${
     response.data.weather[0].icon
@@ -88,15 +91,14 @@ function refreshWeather(response) {
     if (description !== "clear sky") {
       document.container.style.backgroundColor = color;
     }
-
     window.addEventListener("load", changeBackground);
   };
 }
 
+// function to display forectats weather data
 function refreshForecasts(response) {
   document.querySelectorAll(".card-body").forEach(function(element, index) {
     let day = new Date(response.data.list[index].dt_txt);
-
     element.querySelector(".card-title").innerHTML = formatDateForecasts(day);
     element.querySelector(".card-text").innerHTML = `${Math.round(
       response.data.list[index].main.temp_max
@@ -112,6 +114,7 @@ function refreshForecasts(response) {
   });
 }
 
+// function to call the API
 function search(city) {
   let apiUrl = `${apiRoot}/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(refreshWeather);
@@ -119,6 +122,7 @@ function search(city) {
   axios.get(apiUrlForecasts).then(refreshForecasts);
 }
 
+// function to obtain user's input
 function handleSearch(event) {
   event.preventDefault();
   let inputValue = document.querySelector("#input-value");
@@ -129,18 +133,19 @@ function handleSearch(event) {
   }
 }
 
+// function to obtain user's current location
 function searchPosition(position) {
   let apiUrl = `${apiRoot}/weather?lat=${position.coords.latitude}&lon=${
     position.coords.longitude
   }&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(refreshWeather);
-
   let apiUrlForecasts = `${apiRoot}/forecast?lat=${
     position.coords.latitude
   }&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrlForecasts).then(refreshForecasts);
 }
 
+// function to call the current location when clicking on the button
 function buttonClick(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(searchPosition);
