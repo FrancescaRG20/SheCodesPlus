@@ -105,14 +105,17 @@ ul {
   padding: 0px 0px;
   margin: 0px 0px;
 }
+
 .card-body {
   margin: 0px 0px;
   height: 10;
 }
+
 .card-title {
   font-size: 10px;
   height: 10px;
 }
+
 .card-text {
   font-size: 10px;
 }
