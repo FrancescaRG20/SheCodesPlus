@@ -84,15 +84,6 @@ function refreshWeather(response) {
   currentHour.innerHTML = formatHour(new Date(response.data.dt * 1000));
   icon.setAttribute("src", iconUrl);
   icon.setAttribute("alt", response.data.weather[0].description);
-
-  changeBackgroundColor = function changeBackground(color) {
-    description = `${response.data.weather[0].description}`;
-    color = "grey";
-    if (description !== "clear sky") {
-      document.container.style.backgroundColor = color;
-    }
-    window.addEventListener("load", changeBackground);
-  };
 }
 
 // function to display forectats weather data
@@ -153,5 +144,15 @@ function buttonClick(event) {
 
 input.addEventListener("submit", handleSearch);
 currentLocationButton.addEventListener("click", buttonClick);
+
+// function that still doesn't work to change background color
+function changeBackground(response) {
+  description = `${response.data.weather[0].description}`;
+  color = "grey";
+  if (description !== "clear sky") {
+    document.container.style.backgroundColor = color;
+  }
+}
+window.addEventListener("click", changeBackground);
 
 search("Praia de Mira");
